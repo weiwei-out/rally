@@ -1,19 +1,23 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import {
+  GoogleMap,
+  useLoadScript,
+  Marker,
+  InfoWindow,
+} from "react-google-maps";
 
 //Component Imports
-import Login from "./01_LoginPage";
+import NavBar from "./00_NavBar";
+import LoginPage from "./01_LoginPage";
+import HomePage from "./02_HomePage";
+
+//Google Maps API Key from .env
+// const apiKey = process.env.REACT_APP_API_KEY;
 
 function App() {
-  const [count, setCount] = useState(0); //Test
+  // console.log(apiKey);
   const [user, setUser] = useState(null); //Store User Login Info
-
-  //TEST
-  useEffect(() => {
-    fetch("/hello") //-> 4000/api/hello
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
-  }, []);
 
   //Fetch User Info -> store in "user" state
   useEffect(() => {
@@ -54,18 +58,20 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        <NavBar />
         <Switch>
           <Route path="/testing">
             <h1>Test Route</h1>
           </Route>
           <Route exact path="/">
-            <h1>Page Count: {count}</h1>
+            <HomePage />
           </Route>
           <Route path="/login">
-            <Login userLogin={userLogin} />
+            <LoginPage userLogin={userLogin} />
             <button onClick={handleLogout}>Logout</button>
           </Route>
         </Switch>
+        {/* <WrappedMap googleMapURL={``} /> */}
       </div>
     </BrowserRouter>
   );
