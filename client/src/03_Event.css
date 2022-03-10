@@ -1,0 +1,14 @@
+input {
+  width: 15vw;
+  font-size: 15px;
+  margin: 0.1vw;
+}
+
+#shell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#description {
+  height: 5vw;
+}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import logo from "./rally.svg";
 
 //NOTE: THIS IS A SIGNUP -> FUTURE CHANGE NAMING FROM LOGIN-> SIGNUP
 // 01. LoginPage
@@ -26,6 +27,7 @@ function SignUpPage({ userSignUp, setLoginToggle, loginToggle }) {
 
   return (
     <div>
+      <img alt="logo" src={logo} width="10%" />
       <form>
         {/* Username */}
         <div>
@@ -39,7 +41,7 @@ function SignUpPage({ userSignUp, setLoginToggle, loginToggle }) {
         {/* Password */}
         <div>
           <input
-            type="text"
+            type="password"
             name="password"
             placeholder="password"
             onChange={handleLogin}
@@ -48,7 +50,7 @@ function SignUpPage({ userSignUp, setLoginToggle, loginToggle }) {
         {/* Password Confirmation*/}
         <div>
           <input
-            type="text"
+            type="password"
             name="password_confirmation"
             placeholder="confirm password"
             onChange={handleLogin}

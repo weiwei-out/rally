@@ -1,3 +1,4 @@
+import "./03_Event.css";
 import React, { useState } from "react";
 
 function Events({ createNewEvent }) {
@@ -22,34 +23,51 @@ function Events({ createNewEvent }) {
   };
 
   return (
-    <div>
+    <div id="shell-left">
       <form>
-        <input name="title" placeholder="title" onChange={handleRally}></input>
-        <input
-          name="image_url"
-          placeholder="image url"
-          onChange={handleRally}
-        ></input>
-        <input
-          name="start"
-          type="datetime-local"
-          placeholder="start time"
-          onChange={handleRally}
-        ></input>
-        <input
-          name="end"
-          type="datetime-local"
-          placeholder="end time"
-          onChange={handleRally}
-        ></input>
-        <input
-          name="description"
-          placeholder="description"
-          onChange={handleRally}
-        ></input>
-        <button type="submit" onClick={(e) => postRally(e)}>
-          rally the troops 🚩
-        </button>
+        <div className="input">
+          <input
+            name="title"
+            placeholder="title"
+            onChange={handleRally}
+          ></input>
+        </div>
+        <div className="input">
+          <input
+            name="image_url"
+            placeholder="image url"
+            onChange={handleRally}
+          ></input>
+        </div>
+        <div className="input">
+          <input
+            name="start"
+            type="datetime-local"
+            placeholder="start time"
+            onChange={handleRally}
+          ></input>
+        </div>
+        <div className="input">
+          <input
+            name="end"
+            type="datetime-local"
+            placeholder="end time"
+            onChange={handleRally}
+          ></input>
+        </div>
+        <div className="input">
+          <input
+            id="description"
+            name="description"
+            placeholder="description"
+            onChange={handleRally}
+          ></input>
+        </div>
+        <div className="input">
+          <button type="submit" onClick={(e) => postRally(e)}>
+            rally the troops 🚩
+          </button>
+        </div>
       </form>
     </div>
   );

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :availabilities
   
   namespace :api do 
     resources :users

@@ -107,11 +107,7 @@ function App() {
             <h1>Test Route</h1>
           </Route>
           <Route exact path="/">
-            <HomePage />
-          </Route>
-          <Route path="/login">
-            <LoginPage userSignUp={userSignUp} />
-            <button onClick={handleLogout}>Logout</button>
+            <HomePage user={user} />
           </Route>
         </Switch>
         {/* <WrappedMap googleMapURL={``} /> */}

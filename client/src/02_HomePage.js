@@ -47,7 +47,7 @@ const options = {
 
 let tmp = null;
 
-function Home() {
+function Home({ user }) {
   const [HomeContent, setHomeContent] = useState("Events");
   const [Map, setMap] = useState(false);
   const [markers, setMarkers] = useState([]);
@@ -98,6 +98,20 @@ function Home() {
       .then(console.log([tmp.lat, tmp.lng]));
   }
 
+  function createNewAvailability(props) {
+    debugger;
+    fetch("/availability", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(props),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+    // .then(console.log([tmp.lat, tmp.lng]));
+  }
+
   // NOTE: Events|rally & Explore|events are named wrong, but functionally it works -> future fix/clean up
   return (
     <div id="HomePage">
@@ -120,7 +134,10 @@ function Home() {
           ) : HomeContent === "Friends" ? (
             <Friends />
           ) : HomeContent === "Availability" ? (
-            <Availability />
+            <Availability
+              user={user}
+              createNewAvailability={createNewAvailability}
+            />
           ) : HomeContent === "Explore" ? (
             <Explore events={events} />
           ) : (
