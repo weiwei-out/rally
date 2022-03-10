@@ -1,6 +1,6 @@
 :root {
-  --color1: rgba(255, 255, 255, 0.6);
-  --color2: rgba(255, 255, 255, 0.9);
+  --color1: rgba(255, 255, 255, 0.5);
+  --color2: rgba(255, 255, 255, 0.7);
 }
 
 #HomePage {
@@ -39,5 +39,17 @@
 #Content {
   background-color: var(--color2);
   margin: 1vw;
+  margin-top: -0.5vw;
   padding: 1vw;
+}
+
+.title {
+  font-size: larger;
+  color: #707070;
+}
+
+.title:hover {
+  color: #eb6560;
+  transform: scale(1.2);
+  transition-duration: 0.5s;
 }

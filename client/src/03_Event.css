@@ -1,14 +1,31 @@
 input {
-  width: 15vw;
+  width: 20vw;
   font-size: 15px;
   margin: 0.1vw;
 }
 
 #shell {
-  display: table-cell;
+  /* display: table-cell;
   vertical-align: middle;
+  background-color: aqua; */
 }
 
 #description {
   height: 5vw;
+}
+
+#submit {
+  border: none;
+  background-color: #eb6560;
+  color: white;
+  width: 8vw;
+  border-radius: 5px;
+}
+
+#submit:hover {
+  background-color: #b9504c;
+}
+
+* {
+  color: #707070;
 }

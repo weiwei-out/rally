@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
+  resources :friends
   
   namespace :api do 
-    resources :users
-    resources :events
+    
     # # route to test your configuration
     # get '/hello', to: 'application#hello_world'
     # get '/test', to: 'application#test'
@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     #Availability Routes
     get '/availability', to: "availabilities#index"
     post '/availability', to: "availabilities#create"
+    delete '/availability', to: "availabilities#destroy"
 
     
   end 

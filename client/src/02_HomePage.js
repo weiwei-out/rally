@@ -90,7 +90,7 @@ function Home({ user }) {
   if (!isLoaded) return "Loading Maps";
 
   function createNewEvent(props) {
-    debugger;
+    // debugger;
     fetch("/events", {
       method: "POST",
       headers: {
@@ -108,7 +108,7 @@ function Home({ user }) {
   }
 
   function createNewAvailability(props) {
-    debugger;
+    // debugger;
     fetch("/availability", {
       method: "POST",
       headers: {
@@ -121,21 +121,32 @@ function Home({ user }) {
     // .then(console.log([tmp.lat, tmp.lng]));
   }
 
+  function deleteAvailability() {
+    fetch("/availability/5", {
+      method: "DELETE",
+    }).then(console.log("deleted"));
+  }
   // NOTE: Events|rally & Explore|events are named wrong, but functionally it works -> future fix/clean up
   return (
     <div id="HomePage">
       <div>
         <div id="HomeLeft">
-          <div onClick={() => setHomeContent("Events")}>rally</div>
+          <div className="title" onClick={() => setHomeContent("Events")}>
+            rally
+          </div>
           <div
+            className="title"
             onClick={() => {
               return setHomeContent("Explore"), setRerenderer(!rerenderer);
             }}
           >
             events
           </div>
-          <div onClick={() => setHomeContent("Friends")}>friends</div>
+          <div className="title" onClick={() => setHomeContent("Friends")}>
+            friends
+          </div>
           <div
+            className="title"
             onClick={() => {
               return (
                 setHomeContent("Availability"),
@@ -156,6 +167,7 @@ function Home({ user }) {
               user={user}
               createNewAvailability={createNewAvailability}
               free={free}
+              deleteAvailability={deleteAvailability}
             />
           ) : HomeContent === "Explore" ? (
             <Explore events={events} />
@@ -175,10 +187,14 @@ function Home({ user }) {
           options={options}
           onLoad={onMapLoad}
           onClick={(event) => {
-            tmp = markers;
-            console.log(tmp);
             console.log(event);
-
+            console.log(events);
+            console.log(markers);
+            console.log(
+              events.map((x) => {
+                return { lat: x.lat, lng: x.lng };
+              })
+            );
             setMarkers(() => [
               {
                 lat: event.latLng.lat(),
@@ -195,15 +211,30 @@ function Home({ user }) {
               position={{ lat: marker.lat, lng: marker.lng }}
               icon={{
                 url: "/Logo.svg",
-                scaledSize: new window.google.maps.Size(30, 30),
+                scaledSize: new window.google.maps.Size(45, 45),
                 origin: new window.google.maps.Point(0, 0),
-                anchor: new window.google.maps.Point(5, 29),
+                anchor: new window.google.maps.Point(10, 45),
               }}
               onClick={() => {
                 setSelected(marker);
               }}
             />
           ))}
+          {events.map((event) => (
+            <Marker
+              key={event.id}
+              icon={{
+                url: "/Logo.svg",
+                scaledSize: new window.google.maps.Size(45, 45),
+                origin: new window.google.maps.Point(0, 0),
+                anchor: new window.google.maps.Point(10, 45),
+              }}
+              position={{ lat: Number(event.lat), lng: Number(event.lng) }}
+            />
+          ))}
+          {/* {events.map((x) => {
+            return { lat: x.lat, lng: x.lng };
+          })} */}
           {selected ? (
             <InfoWindow position={{ lat: selected.lat, lng: selected.lng }}>
               <div>

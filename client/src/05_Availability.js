@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import AvCard from "./08_Availability_Card";
 
-function Availability({ user, createNewAvailability, free }) {
+function Availability({
+  user,
+  createNewAvailability,
+  free,
+  deleteAvailability,
+}) {
   const [availability, setAvailability] = useState({
     username: `${user.username}`,
     start: null,
@@ -51,7 +56,11 @@ function Availability({ user, createNewAvailability, free }) {
       <div>
         my availability
         {free.map((i) => (
-          <AvCard key={i.id} availability={i} />
+          <AvCard
+            key={i.id}
+            availability={i}
+            deleteAvailability={deleteAvailability}
+          />
         ))}
       </div>
     </div>

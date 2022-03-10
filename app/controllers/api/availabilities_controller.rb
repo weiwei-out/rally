@@ -10,9 +10,16 @@ class Api::AvailabilitiesController < ApplicationController
         render json: availability
     end 
 
+    def destroy
+        byebug
+        availability = Availability.find_by(id: params[:id])
+        availability.destroy
+        head :no_content 
+    end
+
     private 
 
     def availability_params
-        params.permit(:username, :start, :end, :show)
+        params.permit(:id, :username, :start, :end, :show)
     end 
 end

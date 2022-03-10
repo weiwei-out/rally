@@ -1,0 +1,36 @@
+#signIn {
+  border: none;
+  background-color: #eb6560;
+  color: white;
+  width: 7vw;
+  border-radius: 5px;
+}
+
+#signIn:hover {
+  background-color: #b9504c;
+}
+
+#join {
+  border: none;
+  background-color: #eb6560;
+  color: white;
+  width: 7vw;
+  border-radius: 5px;
+}
+
+#join:hover {
+  background-color: #b9504c;
+}
+
+* {
+  font-size: 0.8vw;
+  margin: 0.2vw;
+}
+
+.bar {
+  width: 14.25vw;
+  border: none;
+  border-radius: 5px;
+  padding: 0.1vw;
+  margin-left: 0.15vw;
+}

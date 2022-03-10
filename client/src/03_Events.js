@@ -64,8 +64,8 @@ function Events({ createNewEvent }) {
           ></input>
         </div>
         <div className="input">
-          <button type="submit" onClick={(e) => postRally(e)}>
-            rally the troops 🚩
+          <button id="submit" type="submit" onClick={(e) => postRally(e)}>
+            rally the troops!
           </button>
         </div>
       </form>

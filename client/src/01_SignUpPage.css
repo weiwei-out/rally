@@ -1,0 +1,19 @@
+.button {
+  border: none;
+  background-color: #eb6560;
+  color: white;
+  width: 7vw;
+  border-radius: 5px;
+}
+
+.button:hover {
+  background-color: #b9504c;
+}
+
+.input {
+  width: 14.25vw;
+  border: none;
+  border-radius: 5px;
+  padding: 0.1vw;
+  margin-left: 0.15vw;
+}

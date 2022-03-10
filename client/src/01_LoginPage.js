@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import logo from "./rally.svg";
+import "./01_LoginPage.css";
 
 //NOTE: THIS IS A SIGNUP -> FUTURE CHANGE NAMING FROM LOGIN-> SIGNUP
 // 01. LoginPage
@@ -30,6 +31,7 @@ function LoginPage({ userLogin, setLoginToggle, loginToggle }) {
         {/* Username */}
         <div>
           <input
+            className="bar"
             type="text"
             name="username"
             placeholder="username"
@@ -39,6 +41,7 @@ function LoginPage({ userLogin, setLoginToggle, loginToggle }) {
         {/* Password */}
         <div>
           <input
+            className="bar"
             type="password"
             name="password"
             placeholder="password"
@@ -46,9 +49,11 @@ function LoginPage({ userLogin, setLoginToggle, loginToggle }) {
           ></input>
         </div>
         <div>
-          <button onClick={(e) => postLogin(e)}>sign in</button>
-          <button onClick={(e) => setLoginToggle(!loginToggle)}>
-            Make New Account
+          <button id="signIn" onClick={(e) => postLogin(e)}>
+            sign in
+          </button>
+          <button id="join" onClick={(e) => setLoginToggle(!loginToggle)}>
+            register
           </button>
         </div>
       </form>

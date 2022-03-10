@@ -9,8 +9,10 @@ function NavBar({ handleLogout }) {
           <img alt="logo" src={logo} width="10%" />
         </div>
       </div>
-      <div className="SubNavBab">
-        <button onClick={handleLogout}>Logout</button>
+      <div className="SubNavBab" id="right">
+        <button id="logout" onClick={handleLogout}>
+          logout
+        </button>
       </div>
     </div>
   );

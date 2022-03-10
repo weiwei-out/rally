@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import logo from "./rally.svg";
+import "./01_SignUpPage.css";
 
 //NOTE: THIS IS A SIGNUP -> FUTURE CHANGE NAMING FROM LOGIN-> SIGNUP
 // 01. LoginPage
@@ -32,6 +33,7 @@ function SignUpPage({ userSignUp, setLoginToggle, loginToggle }) {
         {/* Username */}
         <div>
           <input
+            className="input"
             type="text"
             name="username"
             placeholder="username"
@@ -41,6 +43,7 @@ function SignUpPage({ userSignUp, setLoginToggle, loginToggle }) {
         {/* Password */}
         <div>
           <input
+            className="input"
             type="password"
             name="password"
             placeholder="password"
@@ -50,6 +53,7 @@ function SignUpPage({ userSignUp, setLoginToggle, loginToggle }) {
         {/* Password Confirmation*/}
         <div>
           <input
+            className="input"
             type="password"
             name="password_confirmation"
             placeholder="confirm password"
@@ -59,6 +63,7 @@ function SignUpPage({ userSignUp, setLoginToggle, loginToggle }) {
         {/* Email */}
         <div>
           <input
+            className="input"
             type="text"
             name="email"
             placeholder="email"
@@ -67,9 +72,14 @@ function SignUpPage({ userSignUp, setLoginToggle, loginToggle }) {
         </div>
         {/* Sign in  */}
         <div>
-          <button onClick={(e) => postLogin(e)}>sign up</button>
-          <button onClick={(e) => setLoginToggle(!loginToggle)}>
-            Already have an account?
+          <button className="button" onClick={(e) => postLogin(e)}>
+            sign up
+          </button>
+          <button
+            className="button"
+            onClick={(e) => setLoginToggle(!loginToggle)}
+          >
+            back
           </button>
         </div>
       </form>

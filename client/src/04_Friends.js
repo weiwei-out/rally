@@ -6,12 +6,7 @@ function Friends() {
         <button>connect</button>
       </form>
       <div> my friends</div>
-      <div>
-        <li>a</li>
-        <li>b</li>
-        <li>c</li>
-        <li>d</li>
-      </div>
+      <div></div>
     </div>
   );
 }

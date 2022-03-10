@@ -1,3 +1,4 @@
+import "./08_Event_Card.css";
 function Event_Card({ event }) {
   return (
     <div className="event_card">
@@ -10,7 +11,7 @@ function Event_Card({ event }) {
       <p className="event_description">{event.description}</p>
       <p>Start: {event.start}</p>
       <p>End: {event.end}</p>
-      <button></button>
+      <button>save</button>
     </div>
   );
 }
