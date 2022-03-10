@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, useNavigate } from "react-router-dom";
 import {
   GoogleMap,
   useLoadScript,
@@ -10,6 +10,7 @@ import {
 //Component Imports
 import NavBar from "./00_NavBar";
 import LoginPage from "./01_LoginPage";
+import SignUpPage from "./01_SignUpPage";
 import HomePage from "./02_HomePage";
 
 //Google Maps API Key from .env
@@ -29,16 +30,40 @@ function App() {
   }, []);
 
   //POST | to: "users#create"
-  function userLogin(credentials) {
+  function userSignUp(credentials) {
     fetch("/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(credentials),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    }).then((res) => {
+      if (res.ok) {
+        res.json().then((data) => {
+          console.log(data);
+          setUser(data);
+        });
+      }
+    });
+  }
+
+  const [loginToggle, setLoginToggle] = useState(false);
+  //post '/login', to: 'sessions#create'
+  function userLogin(credentials) {
+    fetch("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(credentials),
+    }).then((res) => {
+      if (res.ok) {
+        res.json().then((data) => {
+          console.log(data);
+          setUser(data);
+        });
+      }
+    });
   }
 
   //DELETE | "sessions#destroy"
@@ -55,10 +80,28 @@ function App() {
   //   return <h2>Welcome, {user.username}!</h2>;
   // }
 
+  if (!user && !loginToggle) {
+    return (
+      <LoginPage
+        userLogin={userLogin}
+        setLoginToggle={setLoginToggle}
+        loginToggle={loginToggle}
+      />
+    );
+  } else if (!user) {
+    return (
+      <SignUpPage
+        userSignUp={userSignUp}
+        setLoginToggle={setLoginToggle}
+        loginToggle={loginToggle}
+      />
+    );
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
-        <NavBar />
+        <NavBar handleLogout={handleLogout} />
         <Switch>
           <Route path="/testing">
             <h1>Test Route</h1>
@@ -67,7 +110,7 @@ function App() {
             <HomePage />
           </Route>
           <Route path="/login">
-            <LoginPage userLogin={userLogin} />
+            <LoginPage userSignUp={userSignUp} />
             <button onClick={handleLogout}>Logout</button>
           </Route>
         </Switch>

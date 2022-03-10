@@ -14,7 +14,7 @@
   /* background-color: purple; */
   background-color: var(--color2);
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr; /* fraction*/
+  grid-template-columns: 1fr 1fr 1fr 1fr; /* fraction*/
   padding-top: 3vw;
   padding-bottom: 3vw;
   text-align: center;
@@ -40,7 +40,4 @@
   background-color: var(--color2);
   margin: 1vw;
   padding: 1vw;
-}
-
-<GoogleMap {
 }

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
     has_secure_password
-
+    #checks if username exists && if already in db
+    validates :username, presence: true, uniqueness: true
 end

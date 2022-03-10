@@ -1,7 +1,7 @@
 import "./00_NavBar.css";
 import logo from "./rally.svg";
 
-function NavBar() {
+function NavBar({ handleLogout }) {
   return (
     <div id="NavBar">
       <div className="SubNavBab">
@@ -10,8 +10,7 @@ function NavBar() {
         </div>
       </div>
       <div className="SubNavBab">
-        <div>Login</div>
-        <div>test</div>
+        <button onClick={handleLogout}>Logout</button>
       </div>
     </div>
   );

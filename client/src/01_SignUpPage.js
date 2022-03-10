@@ -2,11 +2,13 @@ import React, { useState } from "react";
 
 //NOTE: THIS IS A SIGNUP -> FUTURE CHANGE NAMING FROM LOGIN-> SIGNUP
 // 01. LoginPage
-function LoginPage({ userLogin, setLoginToggle, loginToggle }) {
+function SignUpPage({ userSignUp, setLoginToggle, loginToggle }) {
   // a. Create a state to store login credentials
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
+    password_confirmation: "",
+    email: "",
   });
 
   // b. Update "credentials" state to store any changes inputted by user
@@ -16,10 +18,10 @@ function LoginPage({ userLogin, setLoginToggle, loginToggle }) {
     setCredentials({ ...credentials, [field]: inputValue });
   };
 
-  // c. onClick -> userLogin -> POST to user
+  // c. onClick -> userSignUp -> POST to user
   const postLogin = (event) => {
     event.preventDefault();
-    userLogin(credentials);
+    userSignUp(credentials);
   };
 
   return (
@@ -43,11 +45,29 @@ function LoginPage({ userLogin, setLoginToggle, loginToggle }) {
             onChange={handleLogin}
           ></input>
         </div>
+        {/* Password Confirmation*/}
+        <div>
+          <input
+            type="text"
+            name="password_confirmation"
+            placeholder="confirm password"
+            onChange={handleLogin}
+          ></input>
+        </div>
         {/* Email */}
         <div>
-          <button onClick={(e) => postLogin(e)}>sign in</button>
+          <input
+            type="text"
+            name="email"
+            placeholder="email"
+            onChange={handleLogin}
+          ></input>
+        </div>
+        {/* Sign in  */}
+        <div>
+          <button onClick={(e) => postLogin(e)}>sign up</button>
           <button onClick={(e) => setLoginToggle(!loginToggle)}>
-            Make New Account
+            Already have an account?
           </button>
         </div>
       </form>
@@ -55,4 +75,4 @@ function LoginPage({ userLogin, setLoginToggle, loginToggle }) {
   );
 }
 
-export default LoginPage;
+export default SignUpPage;

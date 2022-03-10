@@ -7,12 +7,12 @@ class Api::EventsController < ApplicationController
 
     def create 
         event = Event.create(event_params)
-        # byebug
+        render json: event
     end 
 
     private 
 
     def event_params
-        params.permit(:title, :image_url, :start, :end, :description, :private)
+        params.permit(:title, :image_url, :start, :end, :description, :private, :lat, :lng)
     end 
 end

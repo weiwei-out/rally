@@ -1,9 +1,10 @@
 import "./02_HomePage.css";
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 
 import Events from "./03_Events";
 import Friends from "./04_Friends";
 import Availability from "./05_Availability";
+import Explore from "./07_Explore";
 // import Search from "./06_Search";
 import {
   GoogleMap,
@@ -44,8 +45,11 @@ const options = {
   fullscreenControl: true,
 };
 
+let tmp = null;
+
 function Home() {
   const [HomeContent, setHomeContent] = useState("Events");
+  const [Map, setMap] = useState(false);
   const [markers, setMarkers] = useState([]);
   // const onMapClick /19:30
   const [selected, setSelected] = useState(null);
@@ -63,25 +67,62 @@ function Home() {
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(14);
   }, []);
+  const [events, setEvents] = useState([]);
+  const [rerenderer, setRerenderer] = useState(false);
+
+  useEffect(() => {
+    fetch("/events")
+      .then((r) => r.json())
+      .then((r) => setEvents(r))
+      .then(console.log(events));
+  }, [rerenderer]);
 
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
 
+  function createNewEvent(props) {
+    debugger;
+    fetch("/events", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...props,
+        lat: markers[0].lat,
+        lng: markers[0].lng,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .then(console.log([tmp.lat, tmp.lng]));
+  }
+
+  // NOTE: Events|rally & Explore|events are named wrong, but functionally it works -> future fix/clean up
   return (
     <div id="HomePage">
       <div>
         <div id="HomeLeft">
-          <div onClick={() => setHomeContent("Events")}>events</div>
+          <div onClick={() => setHomeContent("Events")}>rally</div>
+          <div
+            onClick={() => {
+              return setHomeContent("Explore"), setRerenderer(!rerenderer);
+            }}
+          >
+            events
+          </div>
           <div onClick={() => setHomeContent("Friends")}>friends</div>
           <div onClick={() => setHomeContent("Availability")}>availability</div>
         </div>
         <div id="Content">
           {HomeContent === "Events" ? (
-            <Events />
+            <Events createNewEvent={createNewEvent} />
           ) : HomeContent === "Friends" ? (
             <Friends />
           ) : HomeContent === "Availability" ? (
             <Availability />
+          ) : HomeContent === "Explore" ? (
+            <Explore events={events} />
           ) : (
             <Events />
           )}
@@ -98,7 +139,10 @@ function Home() {
           options={options}
           onLoad={onMapLoad}
           onClick={(event) => {
+            tmp = markers;
+            console.log(tmp);
             console.log(event);
+
             setMarkers(() => [
               {
                 lat: event.latLng.lat(),
@@ -106,6 +150,7 @@ function Home() {
                 time: new Date(),
               },
             ]);
+            console.log("markers:", markers);
           }}
         >
           {markers.map((marker) => (
@@ -188,3 +233,16 @@ function Search({ panTo }) {
     </Combobox>
   );
 }
+
+//POST | to: "events#create"
+// function createNewEvent(props, selected) {
+//   fetch("/events", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(props, { lat: selected.lat, lng: selected.lng }),
+//   })
+//     .then((res) => res.json())
+//     .then((data) => console.log(data));
+// }
