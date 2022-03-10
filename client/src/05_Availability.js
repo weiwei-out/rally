@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-function Availability({ user, createNewAvailability }) {
+import AvCard from "./08_Availability_Card";
+
+function Availability({ user, createNewAvailability, free }) {
   const [availability, setAvailability] = useState({
     username: `${user.username}`,
     start: null,
@@ -46,7 +48,12 @@ function Availability({ user, createNewAvailability }) {
           </button>
         </form>
       </div>
-      <div>my availability</div>
+      <div>
+        my availability
+        {free.map((i) => (
+          <AvCard key={i.id} availability={i} />
+        ))}
+      </div>
     </div>
   );
 }

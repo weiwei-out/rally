@@ -77,6 +77,15 @@ function Home({ user }) {
       .then(console.log(events));
   }, [rerenderer]);
 
+  const [free, setFree] = useState([]);
+  const [rerendererFree, setRerendererFree] = useState(false);
+  useEffect(() => {
+    fetch("/availability")
+      .then((r) => r.json())
+      .then((r) => setFree(r))
+      .then(console.log(events));
+  }, [rerendererFree]);
+
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
 
@@ -126,7 +135,16 @@ function Home({ user }) {
             events
           </div>
           <div onClick={() => setHomeContent("Friends")}>friends</div>
-          <div onClick={() => setHomeContent("Availability")}>availability</div>
+          <div
+            onClick={() => {
+              return (
+                setHomeContent("Availability"),
+                setRerendererFree(!rerendererFree)
+              );
+            }}
+          >
+            availability
+          </div>
         </div>
         <div id="Content">
           {HomeContent === "Events" ? (
@@ -137,6 +155,7 @@ function Home({ user }) {
             <Availability
               user={user}
               createNewAvailability={createNewAvailability}
+              free={free}
             />
           ) : HomeContent === "Explore" ? (
             <Explore events={events} />
