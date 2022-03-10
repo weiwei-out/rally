@@ -1,2 +1,0 @@
-class AvailabilitiesController < ApplicationController
-end

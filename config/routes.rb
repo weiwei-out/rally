@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :availabilities
   
   namespace :api do 
     resources :users
@@ -23,6 +22,11 @@ Rails.application.routes.draw do
     #Event Routes
     get '/events', to: "events#index"
     post '/events', to: "events#create"
+
+    #Availability Routes
+    get '/availability', to: "availabilities#index"
+    post '/availability', to: "availabilities#create"
+
     
   end 
   

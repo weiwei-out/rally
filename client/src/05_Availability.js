@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 function Availability({ user, createNewAvailability }) {
   const [availability, setAvailability] = useState({
-    userID: `${user.username}`,
-    free_start: null,
-    free_end: null,
+    username: `${user.username}`,
+    start: null,
+    end: null,
     show: true,
   });
 
@@ -26,7 +26,7 @@ function Availability({ user, createNewAvailability }) {
           <div>
             <span>start</span>
             <input
-              name="free_start"
+              name="start"
               placeholder="start"
               type="datetime-local"
               onChange={handleFree}
@@ -35,7 +35,7 @@ function Availability({ user, createNewAvailability }) {
           <div>
             <span>end</span>
             <input
-              name="free_end"
+              name="end"
               placeholder="end"
               type="datetime-local"
               onChange={handleFree}
