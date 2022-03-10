@@ -1,5 +1,12 @@
 #NavBar {
-  background-color: aqua;
+  /* background-color: aqua; */
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr; /* fraction*/
+  grid-template-columns: 1fr 1fr; /* fractional*/
+  height: 7vw;
+  /* margin-bottom: 1vw; */
+}
+
+#Logo {
+  /* background-color: aqua; */
+  margin: 2vw;
 }

@@ -1,11 +1,18 @@
 import "./00_NavBar.css";
+import logo from "./rally.svg";
 
 function NavBar() {
   return (
     <div id="NavBar">
-      <div className="SubNavBab">1</div>
-      <div className="SubNavBab">2</div>
-      <div className="SubNavBab">3</div>
+      <div className="SubNavBab">
+        <div id="Logo">
+          <img alt="logo" src={logo} width="10%" />
+        </div>
+      </div>
+      <div className="SubNavBab">
+        <div>Login</div>
+        <div>test</div>
+      </div>
     </div>
   );
 }

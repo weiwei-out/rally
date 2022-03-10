@@ -4,11 +4,10 @@ function Events() {
       <form>
         <input placeholder="title"></input>
         <input placeholder="image url"></input>
-        <input placeholder="start time"></input>
-        <input placeholder="end time"></input>
+        <input type="datetime-local" placeholder="start time"></input>
+        <input type="datetime-local" placeholder="end time"></input>
         <input placeholder="description"></input>
-        <button>rally the troops!</button>
-        {/*  */}
+        <button type="submit">rally the troops 🚩</button>
       </form>
     </div>
   );

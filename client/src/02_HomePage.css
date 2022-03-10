@@ -1,11 +1,46 @@
+:root {
+  --color1: rgba(255, 255, 255, 0.6);
+  --color2: rgba(255, 255, 255, 0.9);
+}
+
 #HomePage {
-  background-color: red;
+  background-color: var(--color1);
   display: grid;
   grid-template-columns: 3fr 2fr; /* fraction*/
+  margin: 1vw;
 }
 
 #HomeLeft {
-  background-color: purple;
+  /* background-color: purple; */
+  background-color: var(--color2);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr; /* fraction*/
+  padding-top: 3vw;
+  padding-bottom: 3vw;
+  text-align: center;
+  margin: 1vw;
+}
+
+#HomeRight {
+  background-color: var(--color2);
+  margin: 1vw;
+}
+
+#SearchBar {
+  position: relative;
+  top: 7rem;
+  left: 25%;
+  /* transform: translateX(-50%); */
+  width: 100%;
+  max-width: 400px;
+  z-index: 10;
+}
+
+#Content {
+  background-color: var(--color2);
+  margin: 1vw;
+  padding: 1vw;
+}
+
+<GoogleMap {
 }
